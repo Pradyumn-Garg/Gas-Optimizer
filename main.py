@@ -40,7 +40,7 @@ async def forloop(text: str):
         text = text[:idx] + st3 + text[idx:]
         x = i.replace(st1, "_"+st2[0]+" ")
         text = text.replace(i,x)
-    print(text)
+    return {text}
 
 @app.post("/greaterthan_optimizer")
 async def greaterthan(input_string):
