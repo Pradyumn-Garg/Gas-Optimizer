@@ -23,12 +23,12 @@ async def root(file: UploadFile):
     # return {"message": "hi World"}
 
 
-@app.post("/hello/{name}")
-async def say_hello(text: str):
+@app.post("/forloop_optimize")
+async def forloop(text: str):
     x = re.findall("for.*\(.*length.*\)", text);
     for i in x:
         st1=""
-        ans = re.split('<|>|;|=', i)
+        ans = re.split('<|>|;|=|\s+|&', i)
         for j in ans:
             if j.find('length')!=-1:
                 st1=j
@@ -42,12 +42,12 @@ async def say_hello(text: str):
         text = text.replace(i,x)
     print(text)
 
-@app.post("/func1")
-async def modify_requirement(input_string):
+@app.post("/greaterthan_optimizer")
+async def greaterthan(input_string):
     return re.sub(r'>\s*(\d+)', lambda m: f'>= {int(m.group(1))+1}', input_string)\
 
-@app.post("/func2")
-async def string_replace(input_string):
+@app.post("/increment_optimizer")
+async def increment(input_string):
     output_string = input_string.replace("i++", "++i").replace("i+=1", "++i").replace("i = i + 1", "++i")
     return output_string
 
