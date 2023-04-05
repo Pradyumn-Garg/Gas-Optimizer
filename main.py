@@ -42,6 +42,15 @@ async def say_hello(text: str):
         text = text.replace(i,x)
     print(text)
 
+@app.post("/func1")
+async def modify_requirement(input_string):
+    return re.sub(r'>\s*(\d+)', lambda m: f'>= {int(m.group(1))+1}', input_string)\
+
+@app.post("/func2")
+async def string_replace(input_string):
+    output_string = input_string.replace("i++", "++i").replace("i+=1", "++i").replace("i = i + 1", "++i")
+    return output_string
+
 async def save_upload_file(upload_file: UploadFile, destination: Path) -> None:
     try:
         upload_file.file.seek(0)
